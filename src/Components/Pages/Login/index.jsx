@@ -37,9 +37,6 @@ const Login = () => {
         console.log(data.data);
         localStorage.setItem("token", data.data.token);
         localStorage.setItem("id", data.data.id);
-        localStorage.setItem("health-roles", data.data.role);
-        localStorage.setItem("health-name", data.data.firstName);
-        localStorage.setItem("health-lastname", data.data.lastName);
         loginContext(data.data);
       })
       .catch((err) => {
@@ -57,24 +54,12 @@ const Login = () => {
     console.log(currentUser);
     if (isAuth && currentUser) {
       switch (currentUser.roles) {
-        case "ROLE_SEO": {
-          router.replace("/dashboard/ceo/statistika");
-          break;
-        }
-        case "ROLE_OPERATOR": {
-          router.replace("/dashboard/operator/statistika");
-          break;
-        }
-        case "ROLE_LABORANT": {
-          router.replace("/dashboard/laborant/statistika");
+        case "ROLE_ADMIN": {
+          router.replace("/admin/add-category");
           break;
         }
         case "ROLE_CASHIER": {
-          router.replace("/dashboard/cashier/statistika");
-          break;
-        }
-        case "ROLE_DIRECTOR": {
-          router.replace("/dashboard/director/statistika");
+          router.replace("/kassa/glavni");
           break;
         }
       }
@@ -110,28 +95,6 @@ const Login = () => {
       <div className="main">
         <div className="right">
           <h4>Kirish</h4>
-          {/* <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="input">
-              <label>Login</label>
-              <input
-                type="text"
-                autoComplete="off"
-                {...register("name", { required: true })}
-              />
-            </div>
-            <div className="input">
-              <label>Parol</label>
-              <input
-                type="password"
-                autoComplete="off"
-                {...register("password", { required: true })}
-              />
-            </div>
-            <button disabled={loading} type="submit" className="loginBtn">
-              Kirish
-              {loading && <ButtonLoader />}
-            </button>
-          </form> */}
           <Form
             name="basic"
             labelCol={{
@@ -161,12 +124,25 @@ const Login = () => {
                 placeholder="Tanlang"
                 onChange={onGenderChange}
                 allowClear
-              >
-                <Option value="admin">Admin</Option>
-                <Option value="kassa">Kassa</Option>
-                <Option value="kuxnya">Kuxnya</Option>
-                <Option value="ekran">Ekran</Option>
-              </Select>
+                options={[
+                  {
+                    value: "admin",
+                    label: "Admin",
+                  },
+                  {
+                    value: "kassa",
+                    label: "Kassa",
+                  },
+                  {
+                    value: "kuxnya",
+                    label: "Kuxnya",
+                  },
+                  {
+                    value: "ekran",
+                    label: "Ekran",
+                  },
+                ]}
+              />
             </Form.Item>
 
             <Form.Item

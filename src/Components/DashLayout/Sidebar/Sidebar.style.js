@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const SidebarWrapper = styled.div`
   font-family: "Nunito";
+
  
 .ant-badge{
   width: 100%;
@@ -42,20 +43,26 @@ const SidebarWrapper = styled.div`
       justify-content: space-between !important;
     }
     .link {
-      font-style: normal;
-      font-weight: 600;
+      display: inline-block;
+      text-decoration: none !important;
+      padding: 10px;
+      font-weight: 500;
       font-size: 15px;
       line-height: 18px;
       color: #000;
-      text-decoration: none;
       transition: all 1s;
+      display: flex;
+      align-items: center;
+      justify-content: start;
       position: relative;
       overflow: hidden;
       z-index: 0;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
-      padding: 20px 10px;
+      justify-content: center;
+      text-align: center;
+      padding: 20px 0;
       &:after {
         content: "";
         position: absolute;
@@ -63,8 +70,8 @@ const SidebarWrapper = styled.div`
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #fff;
-        /* background-color: #fff; */
+        /* background-color: rgba(31, 60, 136, 0.15); */
+        /* background-color: #f5f5f5; */
         z-index: -2;
       }
       &:before {
@@ -84,21 +91,14 @@ const SidebarWrapper = styled.div`
           width: 100%;
         }
       }
-      svg {
-        fill: none !important;
-        stroke: #1f3c88 !important;
-        margin-right: 8px;
-        width: 25px;
-        height: 25px;
-      }
     }
 
     svg {
       fill: none !important;
       stroke: #000 !important;
       margin-right: 8px;
-      width: 25px;
-      height: 25px;
+      width: 45px;
+      height: 45px;
     }
 
     img{
@@ -108,20 +108,27 @@ const SidebarWrapper = styled.div`
       margin-bottom: 7px;
     }
     .activelink {
+      padding: 10px;
       font-style: normal;
       font-weight: 600;
       font-size: 15px;
       line-height: 18px;
       color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: start;
       text-decoration: none;
+      /* background: rgba(31, 60, 136, 0.15) !important; */
       transition: all 1s;
       position: relative;
       overflow: hidden;
       z-index: 0;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
-      padding: 20px 10px;
+      justify-content: center;
+      text-align: center;
+      padding: 20px 0;
       &:after {
         content: "";
         position: absolute;
@@ -154,8 +161,8 @@ const SidebarWrapper = styled.div`
         fill: none !important;
         stroke: #1f3c88 !important;
         margin-right: 8px;
-        width: 25px;
-        height: 25px;
+        width: 45px;
+        height: 45px;
       }
     }
   }

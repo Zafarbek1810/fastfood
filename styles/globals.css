@@ -29,6 +29,20 @@ body {
   --bs-table-bg-type: transparent !important;
 }
 
+.ant-modal-body .label{
+      display: flex !important;
+      flex-direction: column;
+      margin-bottom: 10px;
+  }
+
+  input{
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 5px;
+  }
+
 
 
 @font-face {

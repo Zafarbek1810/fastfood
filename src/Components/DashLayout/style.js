@@ -9,7 +9,8 @@ const Wrapper = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 14%) !important;
+    /* width: calc(100% - 120px); */
+    box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 14%);
   }
 
   .layout_bottom {
@@ -20,8 +21,6 @@ const Wrapper = styled.div`
     width: 100%;
     height: calc(100vh - 80px) !important;
     overflow-y: auto;
-    border-top: 1px solid rgba(31, 60, 136, 0.2);
-
     &::-webkit-scrollbar-track {
       /* -webkit-box-shadow: inset 0 0 6px rgba(187, 187, 187, 0.3); */
       background-color: #c4bebe;
@@ -37,12 +36,11 @@ const Wrapper = styled.div`
 
   .layout__sidebar {
     flex-shrink: 0;
-    width: 220px;
+    width: 120px;
     border-right: 1px solid rgba(31, 60, 136, 0.2);
     box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 14%);
     overflow-y: auto;
     transition:width 0.5s ease;
-    background: #fff !important;
 
     &::-webkit-scrollbar-track {
       /* -webkit-box-shadow: inset 0 0 6px rgba(187, 187, 187, 0.3); */
@@ -60,13 +58,11 @@ const Wrapper = styled.div`
  
   
   .layout__main {
-    height: 100% !important;
+    height: calc(100vh -90px);
     padding: 15px;
-    background: #fff;
   }
 
   .layout__right {
-    height: calc(100vh - 90px) !important;
     flex-grow: 1;
     overflow-y: auto;
     &::-webkit-scrollbar-track {

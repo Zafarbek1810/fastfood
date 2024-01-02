@@ -34,23 +34,23 @@ const Provider = ({ children }) => {
     setUserData({ isAuth: false, user: null });
   }
 
-  useLayoutEffect(() => {
-    const token = localStorage.getItem("token");
-    UserProvider.getMe().then(
-      (res) => {
-        console.log(res);
-        const data = token && (jwtDecode(token) || null);
-        console.log(data);
-        if (data) {
-          setUserData({ isAuth: true, user: data });
-        }
-        setIsDoneUserChecking(true);
-      },
-      () => {
-        setIsDoneUserChecking(true);
-      }
-    );
-  }, []);
+  // useLayoutEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   UserProvider.getMe().then(
+  //     (res) => {
+  //       console.log(res);
+  //       const data = token && (jwtDecode(token) || null);
+  //       console.log(data);
+  //       if (data) {
+  //         setUserData({ isAuth: true, user: data });
+  //       }
+  //       setIsDoneUserChecking(true);
+  //     },
+  //     () => {
+  //       setIsDoneUserChecking(true);
+  //     }
+  //   );
+  // }, []);
 
   return (
     <UserContext.Provider

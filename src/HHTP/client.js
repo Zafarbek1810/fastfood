@@ -2,7 +2,8 @@ import axios from "axios";
 import Message from "../utils/Message";
 
 
-export const API_URL = "https://e-ses.uz/api";
+// export const API_URL = "https://e-ses.uz/api";
+export const API_URL = "http://217.18.63.208:8080/api";
 
 const client = axios.create({
   withCredentials: true,

@@ -3,159 +3,37 @@ import React, { useEffect, useState } from "react";
 import { useContextSelector } from "use-context-selector";
 import UserContext from "../../../Context/UserContext";
 import MyLink from "../../Common/MyLink";
-import UserCircle from "../../Common/Svgs/UserCircle";
 import { SidebarWrapper } from "./Sidebar.style";
+import MenuSvg from "../../Common/Svgs/MenuSvg";
+import MenuPriceSvg from "../../Common/Svgs/MenuPriceSvg";
+import SettingSvg from "../../Common/Svgs/SettingSvg";
+import ChartStatisticSvg from "../../Common/Svgs/ChartStatisticSvg";
 
 const NavListMenu = [
-  //seo role
   {
-    title: "Foydalanuvchilar",
-    path: "/dashboard/ceo/users",
-    src: <UserCircle />,
-    role: ["ROLE_SEO"],
+    title: "Kategoriya qo'shish",
+    path: "/admin/add-category",
+    src: <MenuSvg />,
+    role: ["ROLE_ADMIN"],
   },
   {
-    title: "Kompaniyalar",
-    path: "/dashboard/ceo/company",
-    src: <UserCircle />,
-    role: ["ROLE_SEO"],
+    title: "Menyu qo'shish",
+    path: "/admin/add-price",
+    src: <MenuPriceSvg />,
+    role: ["ROLE_ADMIN"],
   },
   {
-    title: "Viloyatlar",
-    path: "/dashboard/ceo/region",
-    src: <UserCircle />,
-    role: ["ROLE_SEO"],
+    title: "Sozlamalar",
+    path: "/admin/setting",
+    src: <SettingSvg />,
+    role: ["ROLE_ADMIN"],
   },
-  {
-    title: "Tumanlar",
-    path: "/dashboard/ceo/district",
-    src: <UserCircle />,
-    role: ["ROLE_SEO"],
-  },
-  {
-    title: "Labaratoriyalar",
-    path: "/dashboard/ceo/labaratory",
-    src: <UserCircle />,
-    role: ["ROLE_SEO"],
-  },
-  {
-    title: "Analiz",
-    path: "/dashboard/ceo/analiz",
-    src: <UserCircle />,
-    role: ["ROLE_SEO"],
-  },
-  {
-    title: "Analiz narxlari",
-    path: "/dashboard/ceo/analiz-price",
-    src: <UserCircle />,
-    role: ["ROLE_SEO"],
-  },
-  {
-    title: "Antibiotik",
-    path: "/dashboard/ceo/antibiotic",
-    src: <UserCircle />,
-    role: ["ROLE_SEO"],
-  },
-  {
-    title: "Bakteriya",
-    path: "/dashboard/ceo/bactery",
-    src: <UserCircle />,
-    role: ["ROLE_SEO"],
-  },
-  {
-    title: "Parazit",
-    path: "/dashboard/ceo/parasit",
-    src: <UserCircle />,
-    role: ["ROLE_SEO"],
-  },
-  {
-    title: "Virusologiya",
-    path: "/dashboard/ceo/virusology",
-    src: <UserCircle />,
-    role: ["ROLE_SEO"],
-  },
-  
-  
-  //admin role
-  //casheir role
-  
   {
     title: "Statistika",
-    path: "/dashboard/cashier/statistika",
-    src: <UserCircle />,
-    role: ["ROLE_CASHIER"],
+    path: "/admin/statistika",
+    src: <ChartStatisticSvg />,
+    role: ["ROLE_ADMIN"],
   },
-  {
-    title: "Buyurtmalar",
-    path: "/dashboard/cashier/order",
-    src: <UserCircle />,
-    role: ["ROLE_CASHIER"],
-  },
-  //director role
-  {
-    title: "Statistika",
-    path: "/dashboard/director/statistika",
-    src: <UserCircle />,
-    role: ["ROLE_DIRECTOR"],
-  },
-  // {
-  //   title: "Buyurtmalar",
-  //   path: "/dashboard/director/orders",
-  //   src: <UserCircle />,
-  //   role: ["ROLE_DIRECTOR"],
-  // },
-  {
-    title: "Tahlillar",
-    path: "/dashboard/director/tahlillar",
-    src: <UserCircle />,
-    role: ["ROLE_DIRECTOR"],
-  },
-  
-  //laborant role
-  {
-    title: "Statistika",
-    path: "/dashboard/laborant/statistika",
-    src: <UserCircle />,
-    role: ["ROLE_LABORANT"],
-  },
-  {
-    title: "Tahlillar",
-    path: "/dashboard/laborant/tahlillar",
-    src: <UserCircle />,
-    role: ["ROLE_LABORANT"],
-  },
-  {
-    title: "Tahlil natijalari",
-    path: "/dashboard/laborant/tahlil-result",
-    src: <UserCircle />,
-    role: ["ROLE_LABORANT"],
-  },
-  // operator role
-  {
-    title: "Statistika",
-    path: "/dashboard/operator/statistika",
-    src: <UserCircle />,
-    role: ["ROLE_OPERATOR"],
-  },
-  {
-    title: "Bemorlar",
-    path: "/dashboard/operator/patient",
-    src: <UserCircle />,
-    role: ["ROLE_OPERATOR"],
-  },
-  {
-    title: "Buyurtmalar",
-    path: "/dashboard/operator/order",
-    src: <UserCircle />,
-    role: ["ROLE_OPERATOR"],
-  },
-  // {
-  //   title: "Natijalar",
-  //   path: "/dashboard/operator/result",
-  //   src: <UserCircle />,
-  //   role: ["ROLE_OPERATOR"],
-  // },
-  
 ];
 
 const Sidebar = () => {
@@ -163,9 +41,8 @@ const Sidebar = () => {
 
   const userRole = useContextSelector(
     UserContext,
-    (ctx) => ctx.state.user.roles
+    (ctx) => ctx.state.user?.roles
   );
-  console.log(userRole);
 
   const UmumiyListMenu = NavListMenu.filter(({ role }) =>
     role.includes(userRole)

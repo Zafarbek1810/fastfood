@@ -1,9 +1,9 @@
 
 function getURlFile(imageHashId) {
-    if(!file) return "";
+    if(!imageHashId) return "";
 
     return (
-        URL.createObjectURL(file)
+        URL.createObjectURL(imageHashId)
     )
 }
 
