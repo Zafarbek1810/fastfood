@@ -10,6 +10,8 @@ export default class AdminProvider {
     const params = { categoryId };
     return await client.get(`/cashier/product/list`, { params });
   }
+
+  
   
 
 }

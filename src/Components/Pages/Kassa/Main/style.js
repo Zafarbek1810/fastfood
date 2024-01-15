@@ -28,6 +28,7 @@ const Wrapper = styled.div`
 
         img {
           width: 100%;
+          min-height: 110px;
         }
       }
     }
@@ -40,12 +41,13 @@ const Wrapper = styled.div`
       flex-wrap: wrap;
       overflow-y: auto;
       gap: 15px;
-      padding: 15px 0;
+      padding: 15px;
 
       .product {
         width: 200px;
         height: 270px;
         border: 1px solid rgba(0, 0, 0, 0.175);
+        border-radius: 5px;
         text-align: center;
         cursor: pointer;
         img {
@@ -59,13 +61,25 @@ const Wrapper = styled.div`
       width: 30%;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
       position: relative;
+      margin-top: 15px;
+      padding: 0 15px;
+
+
+      .summ{
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
       .orders{
-        height: calc(100vh - 60px);
+        height: calc(100vh - 75px);
         width: 100%;
         overflow-y: scroll;
 
-        button {
+        button.order {
           color: #000;
           background-color: #80FF00;
           display: flex;
@@ -80,6 +94,60 @@ const Wrapper = styled.div`
           bottom: 0;
           right: 0;
           left: 0;
+        }
+
+        .orderItem{
+          border: 1px solid rgba(0, 0, 0, 0.175);
+          margin-bottom: 15px;
+          border-radius: 5px;
+        }
+
+        .top{
+          display: flex;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+          img{
+            min-width: 50%;
+            height: 140px;
+            object-fit: contain;
+            border-right: 1px solid rgba(0, 0, 0, 0.175);
+          }
+
+          .btns{
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            button{
+              width: 100%;
+              border: none;
+              padding: 10px;
+              border-radius: 5px;
+              svg{
+                stroke: #fff;
+
+                path{
+                  stroke: #fff;
+                }
+              }
+            }
+
+            .edit{
+              background-color: green;
+            }
+
+            .delete{
+              background-color: red;
+            }
+
+          }
+        }
+
+        .bottom{
+          h4{
+            text-align: center;
+          }
         }
       }
 
