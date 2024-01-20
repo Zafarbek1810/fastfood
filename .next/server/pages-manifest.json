@@ -3,6 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/kassa/glavni": "pages/kassa/glavni.js",
-  "/admin/add-category": "pages/admin/add-category.js"
+  "/kitchen/glavni": "pages/kitchen/glavni.js"
 }

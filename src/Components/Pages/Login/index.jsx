@@ -62,6 +62,10 @@ const Login = () => {
           router.replace("/kassa/glavni");
           break;
         }
+        case "ROLE_KITCHEN": {
+          router.replace("/kitchen/glavni");
+          break;
+        }
       }
     }
   }, [isAuth, currentUser]);
