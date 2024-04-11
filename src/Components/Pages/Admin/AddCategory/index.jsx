@@ -160,7 +160,7 @@ const CardCat = ({ item, loading, setLoading, setFetch, editCategory }) => {
   const confirm = useConfirm();
 
   useEffect(() => {
-    AdminProvider.imgPreview(item.image.hashId).then((res) => {
+    AdminProvider.imgPreview(item.image?.hashId).then((res) => {
       const fileType = res.data.type.split("/")[1];
       const file = new File([res.data], `image.${fileType}`, {
         type: res.data.type,

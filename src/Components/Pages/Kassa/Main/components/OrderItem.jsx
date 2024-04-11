@@ -5,11 +5,11 @@ import getURlFile from "../../../../../utils/getUrlFromFile";
 import EditSvg from "../../../../Common/Svgs/EditSvg";
 import DeleteSvg from "../../../../Common/Svgs/DeleteSvg";
 
-const OrderItem = ({ item, setSumm, handleDelete }) => {
+const OrderItem = ({ item, setSumm, handleDelete, handleEdit }) => {
   const [url, setUrl] = useState("");
 
   useEffect(() => {
-    setSumm((parseInt(item.count) * parseInt(item.price)));
+    setSumm(parseInt(item.count) * parseInt(item.price));
   }, [item, setSumm]);
 
   useEffect(() => {
@@ -21,7 +21,6 @@ const OrderItem = ({ item, setSumm, handleDelete }) => {
       setUrl(getURlFile(file));
     });
   }, []);
-
 
   return (
     <div className="orderItem">
@@ -36,10 +35,10 @@ const OrderItem = ({ item, setSumm, handleDelete }) => {
           }}
         >
           <div className="btns">
-            <button className="edit">
+            <button className="edit" onClick={() => handleEdit(item.id)}>
               <EditSvg />
             </button>
-            <button className="delete" onClick={()=>handleDelete(item.id)}>
+            <button className="delete" onClick={() => handleDelete(item.id)}>
               <DeleteSvg />
             </button>
           </div>
@@ -49,7 +48,9 @@ const OrderItem = ({ item, setSumm, handleDelete }) => {
         </div>
       </div>
       <div className="bottom">
-        <h4>{numberFormat(parseInt(item.count) * parseInt(item.price))} so'm</h4>
+        <h4>
+          {numberFormat(parseInt(item.count) * parseInt(item.price))} so'm
+        </h4>
       </div>
     </div>
   );

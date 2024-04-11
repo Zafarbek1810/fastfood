@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import KitchenHeader from './KitchenHeader';
 import MainKitchen from './Main';
 
 const Kitchen = () => {
+    const [array, setArray] = useState([])
     return (
         <div>
-            <KitchenHeader/>
-            <MainKitchen/>
+            <KitchenHeader array={array}/>
+            <MainKitchen setArray={setArray}/>
         </div>
     );
 };

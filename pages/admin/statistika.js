@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import DashboardLayout from '../../src/Components/DashLayout'
+import Statistic from '../../src/Components/Pages/Admin/Statistic'
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <DashboardLayout>
-      statistika
+      <Statistic/>
       </DashboardLayout>
     </>
   )

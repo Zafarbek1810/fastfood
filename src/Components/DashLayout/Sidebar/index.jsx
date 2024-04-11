@@ -8,8 +8,35 @@ import MenuSvg from "../../Common/Svgs/MenuSvg";
 import MenuPriceSvg from "../../Common/Svgs/MenuPriceSvg";
 import SettingSvg from "../../Common/Svgs/SettingSvg";
 import ChartStatisticSvg from "../../Common/Svgs/ChartStatisticSvg";
+import CompanySvg from "../../Common/Svgs/CompanySvg";
+import VideoSvg from "../../Common/Svgs/VideoSvg";
+import AudioSvg from "../../Common/Svgs/AudioSvg";
 
 const NavListMenu = [
+  {
+    title: "Video qo'shish",
+    path: "/ceo/home",
+    src: <VideoSvg />,
+    role: ["ROLE_CEO"],
+  },
+  {
+    title: "Audio qo'shish",
+    path: "/ceo/audio",
+    src: <AudioSvg />,
+    role: ["ROLE_CEO"],
+  },
+  {
+    title: "Audiolar ro'yhati",
+    path: "/ceo/audio-list",
+    src: <AudioSvg />,
+    role: ["ROLE_CEO"],
+  },
+  {
+    title: "Statistika",
+    path: "/admin/statistika",
+    src: <ChartStatisticSvg />,
+    role: ["ROLE_ADMIN"],
+  },
   {
     title: "Kategoriya qo'shish",
     path: "/admin/add-category",
@@ -23,15 +50,15 @@ const NavListMenu = [
     role: ["ROLE_ADMIN"],
   },
   {
-    title: "Sozlamalar",
-    path: "/admin/setting",
-    src: <SettingSvg />,
+    title: "Company qo'shish",
+    path: "/admin/company",
+    src: <CompanySvg />,
     role: ["ROLE_ADMIN"],
   },
   {
-    title: "Statistika",
-    path: "/admin/statistika",
-    src: <ChartStatisticSvg />,
+    title: "Sozlamalar",
+    path: "/admin/setting",
+    src: <SettingSvg />,
     role: ["ROLE_ADMIN"],
   },
 ];

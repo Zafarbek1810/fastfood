@@ -52,7 +52,8 @@ const Wrapper = styled.div`
         cursor: pointer;
         img {
           width: 100%;
-          min-height: 200px;
+          height: 200px;
+          object-fit: contain;
         }
       }
     }
@@ -94,6 +95,11 @@ const Wrapper = styled.div`
           bottom: 0;
           right: 0;
           left: 0;
+
+          &:disabled{
+            cursor: not-allowed;
+            opacity: 0.7;
+          }
         }
 
         .orderItem{

@@ -3,7 +3,7 @@ import React from "react";
 const UserCircle = () => {
   return (
     <svg
-      class="icon icon-tabler icon-tabler-user-circle"
+    className="icon icon-tabler icon-tabler-user-circle"
       width="24"
       height="24"
       viewBox="0 0 24 24"

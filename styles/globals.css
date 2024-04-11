@@ -24,6 +24,15 @@ body {
   height: 12px !important;
 }
 
+.ant-modal-content .ant-modal-body .modal-inner{
+  display: flex;
+  justify-content: center;
+  padding: 50px !important;
+}
+.ant-modal-content .ant-modal-body .modal-inner h1{
+  font-size: 120px !important;
+}
+
 .table-striped>tbody>tr:nth-of-type(odd)>*{
   background-color: rgb(252, 252, 255);
   --bs-table-bg-type: transparent !important;

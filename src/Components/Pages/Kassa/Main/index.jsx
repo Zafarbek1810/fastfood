@@ -7,6 +7,7 @@ import CardCat from "./components/CardCat";
 import numberFormat from "../../../../utils/numberFormat";
 import OrderProvider from "../../../../Data/OrderProvider";
 import { toast } from "react-toastify";
+import { Modal } from "antd";
 
 const Main = () => {
   const [category, setCategory] = useState([]);
@@ -16,6 +17,10 @@ const Main = () => {
   const [fetch, setFetch] = useState(false);
   const [productArr, setProductArr] = useState([]);
   const [summ, setSumm] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [descr, setDescr] = useState("");
+  const [editProductId, setEditProductId] = useState(null);
+  const [loadingBtn, setLoadingBtn] = useState(false);
 
   const totalSum = productArr.reduce((sum, item) => {
     const count = parseInt(item.count, 10) || 0;
@@ -51,13 +56,11 @@ const Main = () => {
   console.log(productArr);
 
   const handleClick = (item) => {
-    // Check if the product is already in the productArr
     const existingProduct = productArr.find(
       (product) => product.id === item.id
     );
 
     if (existingProduct) {
-      // If it exists, update the count
       setProductArr((prevArr) =>
         prevArr.map((product) =>
           product.id === item.id
@@ -91,10 +94,34 @@ const Main = () => {
     });
   };
 
+  const handleEdit = (id) => {
+    const productToUpdate = productArr.find((product) => product.id === +id);
+    if (productToUpdate) {
+      setIsModalOpen(true);
+      setDescr(productToUpdate.description || "");
+      setEditProductId(+id);
+    }
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+    const updatedProductArr = productArr.map((product) => {
+      if (product.id === editProductId) {
+        return { ...product, description: descr };
+      }
+      return product;
+    });
+    setProductArr(updatedProductArr);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   const handleCreateOrder = (productArr) => {
+    setLoadingBtn(true);
     OrderProvider.createOrder()
-      .then((res) => {
-        console.log(res.data.success);
+      .then(async (res) => {
         if (res.data.success) {
           const body = [];
           for (let i = 0; i < productArr.length; i++) {
@@ -102,21 +129,46 @@ const Main = () => {
               orderId: res.data.data,
               productId: productArr[i].id,
               quantity: productArr[i].count,
+              description: productArr[i].description,
             });
           }
-          OrderProvider.addProductOrder(body)
+          await OrderProvider.addProductOrder(body)
             .then((res) => {
-              console.log(res);
               toast.success("Buyurtma muvaffaqiyatli berildi");
-              setProductArr([])
+              setProductArr([]);
+              setLoadingBtn(false);
             })
             .catch((err) => {
               console.log(err);
+            });
+
+          await OrderProvider.downloadPdf(res.data.data)
+            .then((res) => {
+              console.log(res);
+              const blob = new Blob([res.data], {
+                type: "application/pdf",
+              });
+
+              const link = document.createElement("a");
+              link.href = window.URL.createObjectURL(blob);
+              //no download
+              link.target = "_blank";
+              link.click();
+
+              // link.download = `${drawerData.firstName} ${drawerData.lastName}.pdf`;
+              // link.click();
+            })
+            .catch((err) => {
+              console.log(err);
+              toast.error(err?.response?.data?.message);
             });
         }
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setLoadingBtn(false);
       });
   };
 
@@ -165,6 +217,7 @@ const Main = () => {
                       item={item}
                       setSumm={setSumm}
                       handleDelete={handleDelete}
+                      handleEdit={handleEdit}
                     />
                   ))
                 ) : (
@@ -174,6 +227,7 @@ const Main = () => {
               <button
                 onClick={() => handleCreateOrder(productArr)}
                 className="order"
+                disabled={loadingBtn}
               >
                 Buyurtma berish <b>{totalCount > 0 && `  ${totalSum} so'm`}</b>
               </button>
@@ -181,6 +235,20 @@ const Main = () => {
           </div>
         </div>
       </div>
+
+      <Modal
+        title="Basic Modal"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <input
+          style={{ width: "100%" }}
+          type="text"
+          value={descr}
+          onChange={(e) => setDescr(e.target.value)}
+        />
+      </Modal>
     </Wrapper>
   );
 };

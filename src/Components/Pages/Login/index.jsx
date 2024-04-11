@@ -54,8 +54,12 @@ const Login = () => {
     console.log(currentUser);
     if (isAuth && currentUser) {
       switch (currentUser.roles) {
+        case "ROLE_CEO": {
+          router.replace("/ceo/home");
+          break;
+        }
         case "ROLE_ADMIN": {
-          router.replace("/admin/add-category");
+          router.replace("/admin/statistika");
           break;
         }
         case "ROLE_CASHIER": {
@@ -64,6 +68,10 @@ const Login = () => {
         }
         case "ROLE_KITCHEN": {
           router.replace("/kitchen/glavni");
+          break;
+        }
+        case "ROLE_TV": {
+          router.replace("/ekran/glavni");
           break;
         }
       }
@@ -129,6 +137,10 @@ const Login = () => {
                 onChange={onGenderChange}
                 allowClear
                 options={[
+                  {
+                    value: "ceo",
+                    label: "CEO",
+                  },
                   {
                     value: "admin",
                     label: "Admin",

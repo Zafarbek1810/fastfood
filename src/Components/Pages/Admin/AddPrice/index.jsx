@@ -24,6 +24,7 @@ const AddPrice = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
+  const[toKitchen, setToKitchen] = useState(true);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -76,7 +77,7 @@ const AddPrice = () => {
           name: rest.name,
           price: rest.price,
           isAvailable: true,
-          toKitchen: true,
+          toKitchen: !toKitchen,
           description: "",
         });
         console.log(res);
@@ -99,7 +100,7 @@ const AddPrice = () => {
           name: rest.name,
           price: +rest.price,
           isAvailable: true,
-          toKitchen: true,
+          toKitchen: !toKitchen,
           description: "",
         });
         console.log(res);
@@ -135,6 +136,7 @@ const AddPrice = () => {
       value: obj.category?.id,
     });
   };
+
 
   const deleteProduct = (id) => {
     confirm({
@@ -223,6 +225,18 @@ const AddPrice = () => {
                   {...productForm.register("price", { required: true })}
                 />
               </label>
+              <label style={{display:'flex', gap: "20px"}}>
+                <input
+                onChange={e=>setToKitchen(e.target.checked)}
+                style={{
+                  background:'#fff'
+                }}
+                  type="checkbox"
+                  />
+                  Tayyor mahsulotmi?
+              </label>
+
+
             </form>
           </Modal>
         </div>
@@ -304,7 +318,7 @@ const CardCat = ({ item, loading, setCategoryId }) => {
   const [url, setUrl] = useState("");
 
   useEffect(() => {
-    AdminProvider.imgPreview(item.image.hashId).then((res) => {
+    AdminProvider.imgPreview(item.image?.hashId).then((res) => {
       const fileType = res.data.type.split("/")[1];
       const file = new File([res.data], `image.${fileType}`, {
         type: res.data.type,
@@ -337,14 +351,15 @@ const ProductPro = ({ item }) => {
   const [url, setUrl] = useState("");
 
   useEffect(() => {
-    AdminProvider.imgPreview(item.image.hashId).then((res) => {
+    AdminProvider.imgPreview(item.image?.hashId).then((res) => {
       const fileType = res.data.type.split("/")[1];
       const file = new File([res.data], `image.${fileType}`, {
         type: res.data.type,
       });
       setUrl(getURlFile(file));
     });
-  }, []);
+  }, [item]);
+
   return (
     <AddPriceWrapper>
       <div className="product">

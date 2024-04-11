@@ -7,10 +7,19 @@ const Wrapper = styled.div`
   .wrap {
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
     height: 60px;
-    font-family: Azo sans;
+    padding: 0 10px;
+
+    .center{
+        span{
+            background-color: #e74247;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+        }
+    }
 
     .right {
       display: flex;

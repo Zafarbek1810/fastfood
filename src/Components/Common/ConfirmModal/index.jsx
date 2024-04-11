@@ -65,12 +65,12 @@ const ConfirmModal = ({ children , title}) => {
       </ModalContent>
       {/* <ModalFooter className="modal-footer">
         <Button type="button" onClick={RejectAndClose} data-bs-dismiss="modal" variant="contained"
-        class="btn btn-danger btn-rounded col-6"
+        className="btn btn-danger btn-rounded col-6"
         >
           Bekor qilish
         </Button>
         <Button type="button" onClick={ResolveAndClose} data-bs-dismiss="modal" variant="contained"
-        class="btn btn-success btn-rounded col-6"
+        className="btn btn-success btn-rounded col-6"
         >
           Tasdiqlash
         </Button>

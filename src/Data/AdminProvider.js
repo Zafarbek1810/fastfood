@@ -15,6 +15,9 @@ export default class AdminProvider {
       headers: { "Content-Type": "multipart/form-data" },
     });
   }
+  static async deleteFile(hashId) {
+    return await client.delete(`/admin/file/delete/${hashId}`);
+  }
 
   static async updateCategory(body) {
     return await client.put("/admin/category/update", body);
@@ -32,6 +35,9 @@ export default class AdminProvider {
   }
   static async previewImage(hashId) {
     return await client.get(`/admin/file/preview?hashId=${hashId}`);
+  }
+  static async previewVideo(hashId) {
+    return await client.get(`/admin/file/preview/video?hashId=${hashId}`);
   }
 
   static async imgPreview(hashId) {

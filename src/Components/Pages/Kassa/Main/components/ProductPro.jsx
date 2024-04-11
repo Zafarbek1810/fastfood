@@ -19,7 +19,7 @@ const ProductPro = ({ item, handleClick }) => {
   return (
     <div onClick={() => handleClick(item)}>
       <div className="img">
-        <img src={url} alt="img" />
+        <img style={{minHeight: '200px'}} src={url} alt="img" />
         <h4>{item.name}</h4>
         <h4>{numberFormat(item.price)} so'm</h4>
       </div>
