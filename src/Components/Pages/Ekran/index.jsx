@@ -160,13 +160,13 @@ const EkranMain = () => {
         </div>
       </div>
       <div className="middle">
-        {/* {video.length ? (
+        {video.length ? (
           video.map((item) => {
             return <CardPro obj={item} />;
           })
         ) : (
           <></>
-        )} */}
+        )}
       </div>
       <div className="right">
         <h1 className="title">Tayyor</h1>
