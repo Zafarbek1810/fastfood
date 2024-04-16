@@ -109,15 +109,6 @@ const EkranMain = () => {
     setUrlAudio(
       `http://217.18.63.208:8080/api/tv/file/preview/audio?number=${number}&gender=female`
     );
-    // SeoProvider.tvFileGetAudio(number, "female")
-    //   .then((res) => {
-    //     setUrlAudio(
-    //       `http://217.18.63.208:8080/api/tv/file/preview/audio?number=${number}&gender=female`
-    //     );
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   };
 
   return (
@@ -127,7 +118,7 @@ const EkranMain = () => {
           style={{
             top: "25%",
           }}
-          open={true}
+          open={openModal}
           footer={false}
         >
           {urlAudio && (

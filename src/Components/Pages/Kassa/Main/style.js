@@ -4,6 +4,16 @@ const Wrapper = styled.div`
   background: #fff;
   border-bottom: 1px solid #999;
 
+  /* background: url('/images/login-bg.jpg'); */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+
+  .ant-modal-content {
+    background: #fff !important;
+  }
+
   .wrap {
     display: flex;
     /* justify-content: space-between; */
@@ -49,6 +59,7 @@ const Wrapper = styled.div`
         border: 1px solid rgba(0, 0, 0, 0.175);
         border-radius: 5px;
         text-align: center;
+        background-color: #fff;
         cursor: pointer;
         img {
           width: 100%;
@@ -68,21 +79,25 @@ const Wrapper = styled.div`
       margin-top: 15px;
       padding: 0 15px;
 
-
-      .summ{
+      .summ {
         position: absolute;
         top: 0;
         left: 0;
       }
 
-      .orders{
+      .orders {
         height: calc(100vh - 75px);
         width: 100%;
         overflow-y: scroll;
 
+        .main{
+        background-color: #fff;
+
+        }
+
         button.order {
           color: #000;
-          background-color: #80FF00;
+          background-color: #80ff00;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -96,67 +111,72 @@ const Wrapper = styled.div`
           right: 0;
           left: 0;
 
-          &:disabled{
+          &:disabled {
             cursor: not-allowed;
             opacity: 0.7;
           }
         }
 
-        .orderItem{
-          border: 1px solid rgba(0, 0, 0, 0.175);
+        .orderItem {
+          /* border: 1px solid rgba(0, 0, 0, 0.175); */
           margin-bottom: 15px;
           border-radius: 5px;
+
+          span {
+            button {
+              background: transparent;
+              border: none;
+            }
+          }
         }
 
-        .top{
+        .top {
           display: flex;
           border-bottom: 1px solid rgba(0, 0, 0, 0.175);
-          img{
+          img {
             min-width: 50%;
             height: 140px;
             object-fit: contain;
             border-right: 1px solid rgba(0, 0, 0, 0.175);
           }
 
-          .btns{
+          .btns {
             width: 100%;
             display: flex;
             gap: 10px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.175);
             padding-bottom: 15px;
             margin-bottom: 15px;
-            button{
+            button {
               width: 100%;
               border: none;
               padding: 10px;
               border-radius: 5px;
-              svg{
+              svg {
                 stroke: #fff;
 
-                path{
+                path {
                   stroke: #fff;
                 }
               }
             }
 
-            .edit{
+            .edit {
               background-color: green;
             }
 
-            .delete{
+            .delete {
               background-color: red;
             }
-
           }
         }
 
-        .bottom{
-          h4{
+        .bottom {
+          h4 {
             text-align: center;
           }
         }
       }
-
 
       svg {
         width: 20px;

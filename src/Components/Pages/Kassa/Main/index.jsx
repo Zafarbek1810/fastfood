@@ -7,9 +7,9 @@ import CardCat from "./components/CardCat";
 import numberFormat from "../../../../utils/numberFormat";
 import OrderProvider from "../../../../Data/OrderProvider";
 import { toast } from "react-toastify";
-import { Modal } from "antd";
+import { Modal, Drawer, Button } from "antd";
 
-const Main = () => {
+const Main = ({setLastOrderId}) => {
   const [category, setCategory] = useState([]);
   const [categoryId, setCategoryId] = useState(0);
   const [products, setProducts] = useState([]);
@@ -122,8 +122,11 @@ const Main = () => {
     setLoadingBtn(true);
     OrderProvider.createOrder()
       .then(async (res) => {
+        console.log(res);
         if (res.data.success) {
           const body = [];
+          setLastOrderId(res.data.data)
+
           for (let i = 0; i < productArr.length; i++) {
             body.push({
               orderId: res.data.data,
@@ -142,26 +145,26 @@ const Main = () => {
               console.log(err);
             });
 
-          await OrderProvider.downloadPdf(res.data.data)
-            .then((res) => {
-              console.log(res);
-              const blob = new Blob([res.data], {
-                type: "application/pdf",
-              });
+          // await OrderProvider.downloadPdf(res.data.data)
+          //   .then((res) => {
+          //     console.log(res);
+          //     const blob = new Blob([res.data], {
+          //       type: "application/pdf",
+          //     });
 
-              const link = document.createElement("a");
-              link.href = window.URL.createObjectURL(blob);
-              //no download
-              link.target = "_blank";
-              link.click();
+          //     const link = document.createElement("a");
+          //     link.href = window.URL.createObjectURL(blob);
+          //     //no download
+          //     link.target = "_blank";
+          //     link.click();
 
-              // link.download = `${drawerData.firstName} ${drawerData.lastName}.pdf`;
-              // link.click();
-            })
-            .catch((err) => {
-              console.log(err);
-              toast.error(err?.response?.data?.message);
-            });
+          //     // link.download = `${drawerData.firstName} ${drawerData.lastName}.pdf`;
+          //     // link.click();
+          //   })
+          //   .catch((err) => {
+          //     console.log(err);
+          //     toast.error(err?.response?.data?.message);
+          //   });
         }
       })
       .catch((err) => {
@@ -236,19 +239,26 @@ const Main = () => {
         </div>
       </div>
 
-      <Modal
-        title="Basic Modal"
+      <Drawer
+        title="Tahrirlash"
+        placement={'left'}
+        closable={false}
+        onClose={handleCancel}
         open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        
       >
+        <div style={{display:'flex', flexDirection:'column', gap:'20px'}}>
         <input
           style={{ width: "100%" }}
           type="text"
           value={descr}
           onChange={(e) => setDescr(e.target.value)}
         />
-      </Modal>
+        <Button onClick={handleOk}>
+          Saqlash
+        </Button>
+        </div>
+      </Drawer>
     </Wrapper>
   );
 };

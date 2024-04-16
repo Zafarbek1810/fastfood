@@ -38,6 +38,11 @@ class OrderProvider {
       `/orders/change-status/${orderId}?status=${status}`
     );
   }
+  static async ordersPrint(orderId) {
+    return await client.post(
+      `/orders/print/cheque?orderId=${orderId}`
+    );
+  }
 
   static async downloadExcel(startDate, endDate) {
     try {

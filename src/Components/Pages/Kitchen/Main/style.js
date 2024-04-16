@@ -6,6 +6,8 @@ const Wrap = styled.div`
   border-radius: 15px;
   padding: 15px;
 
+  
+
   .top {
     display: flex;
     gap: 50px;

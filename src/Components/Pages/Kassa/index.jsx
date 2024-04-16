@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HeaderKassa from './HeaderKassa';
 import Main from './Main';
+import { KassaWrapper } from './style';
 
 const KassaMain = () => {
+    const [lastOrderId, setLastOrderId] = useState(null)
     return (
-        <div>
-            <HeaderKassa/>
-            <Main/>
-        </div>
+        <>
+            <HeaderKassa lastOrderId={lastOrderId}/>
+            <Main setLastOrderId={setLastOrderId}/>
+        </>
     );
 };
 

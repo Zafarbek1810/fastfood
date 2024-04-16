@@ -25,7 +25,6 @@ const OrderItem = ({ item, setSumm, handleDelete, handleEdit }) => {
   return (
     <div className="orderItem">
       <div className="top">
-        <img src={url} alt="img" />
         <div
           style={{
             display: "flex",
@@ -34,24 +33,26 @@ const OrderItem = ({ item, setSumm, handleDelete, handleEdit }) => {
             padding: 10,
           }}
         >
-          <div className="btns">
-            <button className="edit" onClick={() => handleEdit(item.id)}>
-              <EditSvg />
-            </button>
-            <button className="delete" onClick={() => handleDelete(item.id)}>
-              <DeleteSvg />
-            </button>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ width: "30%" }}>{item.name} </span>
+            <span style={{ width: "20%", textAlign: "center" }}>
+              {+item.count}
+            </span>
+            <span style={{ width: "30%", textAlign: "center" }}>
+              {numberFormat(item.price)}
+            </span>
+            <span style={{ width: "20%", display: "flex" }}>
+              <button onClick={() => handleEdit(item.id)}>
+                <EditSvg />
+              </button>
+              <button onClick={() => handleDelete(item.id)}>
+                <DeleteSvg />
+              </button>
+            </span>
           </div>
-          <h4>
-            {+item.count} x {numberFormat(item.price)} so'm
-          </h4>
         </div>
       </div>
-      <div className="bottom">
-        <h4>
-          {numberFormat(parseInt(item.count) * parseInt(item.price))} so'm
-        </h4>
-      </div>
+     
     </div>
   );
 };

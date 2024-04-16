@@ -33,7 +33,7 @@ const Wrapper = styled.div`
       width: 30%;
       display: flex;
       align-items: center;
-      justify-content: end;
+      justify-content: space-between;
       h3 {
         font-size: 20px;
         margin-right: 20px;

@@ -35,21 +35,23 @@ const Wrapper = styled.div`
 
     h1 {
       color: #000;
-      border: 1px solid #FFEF00;
+      border: 1px solid #ffef00;
       padding: 5px;
-      background-color: #FFEF00;
+      background-color: #ffef00;
       width: 100%;
     }
 
     .numbers {
       display: flex;
       flex-direction: column;
+      height: 90vh;
+      flex-wrap: wrap;
     }
 
     h2 {
       color: #000;
-      border: 1px solid #FFEF00;
-      background-color: #FFEF00;
+      border: 1px solid #ffef00;
+      background-color: #ffef00;
       border-radius: 50%;
       width: 120px;
       font-size: 58px;
@@ -57,6 +59,7 @@ const Wrapper = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      margin: 0 25px 5px 25px;
     }
   }
 
@@ -86,6 +89,8 @@ const Wrapper = styled.div`
     .numbers {
       display: flex;
       flex-direction: column;
+      height: 90vh;
+      flex-wrap: wrap;
     }
 
     h1 {
@@ -107,12 +112,18 @@ const Wrapper = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      margin: 0 25px 5px 25px;
     }
   }
 
   .fade-in {
     opacity: 0;
     animation: fadeIn 1s ease forwards;
+  }
+
+  .ant-modal-content {
+    background: transparent !important;
+    backdrop-filter: blur(20px) !important;
   }
 
   @keyframes fadeIn {
