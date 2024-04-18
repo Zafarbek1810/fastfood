@@ -7,9 +7,9 @@ import CardCat from "./components/CardCat";
 import numberFormat from "../../../../utils/numberFormat";
 import OrderProvider from "../../../../Data/OrderProvider";
 import { toast } from "react-toastify";
-import { Modal, Drawer, Button } from "antd";
+import { Modal, Drawer, Button, Radio } from "antd";
 
-const Main = ({setLastOrderId}) => {
+const Main = ({ setLastOrderId }) => {
   const [category, setCategory] = useState([]);
   const [categoryId, setCategoryId] = useState(0);
   const [products, setProducts] = useState([]);
@@ -21,6 +21,11 @@ const Main = ({setLastOrderId}) => {
   const [descr, setDescr] = useState("");
   const [editProductId, setEditProductId] = useState(null);
   const [loadingBtn, setLoadingBtn] = useState(false);
+  const [value, setValue] = useState(null);
+
+  const onChange = ({ target: { value } }) => {
+    setValue(value);
+  };
 
   const totalSum = productArr.reduce((sum, item) => {
     const count = parseInt(item.count, 10) || 0;
@@ -120,12 +125,12 @@ const Main = ({setLastOrderId}) => {
 
   const handleCreateOrder = (productArr) => {
     setLoadingBtn(true);
-    OrderProvider.createOrder()
+    OrderProvider.createOrder(value)
       .then(async (res) => {
         console.log(res);
         if (res.data.success) {
           const body = [];
-          setLastOrderId(res.data.data)
+          setLastOrderId(res.data.data);
 
           for (let i = 0; i < productArr.length; i++) {
             body.push({
@@ -140,31 +145,19 @@ const Main = ({setLastOrderId}) => {
               toast.success("Buyurtma muvaffaqiyatli berildi");
               setProductArr([]);
               setLoadingBtn(false);
+              setValue(null)
             })
             .catch((err) => {
               console.log(err);
             });
 
-          // await OrderProvider.downloadPdf(res.data.data)
-          //   .then((res) => {
-          //     console.log(res);
-          //     const blob = new Blob([res.data], {
-          //       type: "application/pdf",
-          //     });
-
-          //     const link = document.createElement("a");
-          //     link.href = window.URL.createObjectURL(blob);
-          //     //no download
-          //     link.target = "_blank";
-          //     link.click();
-
-          //     // link.download = `${drawerData.firstName} ${drawerData.lastName}.pdf`;
-          //     // link.click();
-          //   })
-          //   .catch((err) => {
-          //     console.log(err);
-          //     toast.error(err?.response?.data?.message);
-          //   });
+          await OrderProvider.ordersPrint(res.data?.data)
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       })
       .catch((err) => {
@@ -174,6 +167,17 @@ const Main = ({setLastOrderId}) => {
         setLoadingBtn(false);
       });
   };
+
+  const optionsWithDisabled = [
+    {
+      label: "Dostovka",
+      value: 15,
+    },
+    {
+      label: "Soboy",
+      value: 25,
+    },
+  ];
 
   return (
     <Wrapper>
@@ -227,6 +231,16 @@ const Main = ({setLastOrderId}) => {
                   <h3>Menyu mavjud emas</h3>
                 )}
               </div>
+              <div className="radios">
+                <Radio.Group
+                style={{width:'100%'}}
+                  options={optionsWithDisabled}
+                  onChange={onChange}
+                  value={value}
+                  optionType="button"
+                  buttonStyle="solid"
+                />
+              </div>
               <button
                 onClick={() => handleCreateOrder(productArr)}
                 className="order"
@@ -241,22 +255,19 @@ const Main = ({setLastOrderId}) => {
 
       <Drawer
         title="Tahrirlash"
-        placement={'left'}
+        placement={"left"}
         closable={false}
         onClose={handleCancel}
         open={isModalOpen}
-        
       >
-        <div style={{display:'flex', flexDirection:'column', gap:'20px'}}>
-        <input
-          style={{ width: "100%" }}
-          type="text"
-          value={descr}
-          onChange={(e) => setDescr(e.target.value)}
-        />
-        <Button onClick={handleOk}>
-          Saqlash
-        </Button>
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <input
+            style={{ width: "100%" }}
+            type="text"
+            value={descr}
+            onChange={(e) => setDescr(e.target.value)}
+          />
+          <Button onClick={handleOk}>Saqlash</Button>
         </div>
       </Drawer>
     </Wrapper>

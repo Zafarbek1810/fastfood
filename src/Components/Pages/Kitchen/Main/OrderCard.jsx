@@ -4,7 +4,7 @@ import { Wrap } from "./style";
 import OrderItem from "./OrderItem";
 import { toast } from "react-toastify";
 
-const OrderCard = ({ id, setRender, setLoading }) => {
+const OrderCard = ({ id, setRender, setLoading, setLastOrderId }) => {
   const [detail, setDetail] = useState([]);
 
   useEffect(() => {
@@ -24,6 +24,9 @@ const OrderCard = ({ id, setRender, setLoading }) => {
       .then((res) => {
         console.log(res);
         setRender(Math.random());
+        if(status==="READY"){
+          setLastOrderId(id)
+        }
         toast.success(
           status === "READY"
             ? "Buyurtma tayyor bo'ldi!"

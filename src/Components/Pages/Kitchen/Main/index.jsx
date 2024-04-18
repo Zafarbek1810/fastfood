@@ -4,7 +4,7 @@ import OrderCard from "./OrderCard";
 import { Spin } from "antd";
 import useSound from "use-sound";
 
-const MainKitchen = ({ setArray }) => {
+const MainKitchen = ({ setArray, setLastOrderId }) => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const [play] = useSound("../audio/audio.mp3", { volume: 1 }); 
@@ -50,7 +50,7 @@ const MainKitchen = ({ setArray }) => {
       {orders
         .filter((i) => i.status === "PENDING")
         .map((order, index) => (
-          <OrderCard key={order.id} id={order.id} setLoading={setLoading} setRender={setRender} />
+          <OrderCard key={order.id} id={order.id} setLoading={setLoading} setRender={setRender} setLastOrderId={setLastOrderId} />
         ))}
     </Spin>
   );

@@ -4,10 +4,11 @@ import MainKitchen from './Main';
 
 const Kitchen = () => {
     const [array, setArray] = useState([])
+    const [lastOrderId, setLastOrderId] = useState(null)
     return (
         <div>
-            <KitchenHeader array={array}/>
-            <MainKitchen setArray={setArray}/>
+            <KitchenHeader array={array} lastOrderId={lastOrderId}/>
+            <MainKitchen setArray={setArray} setLastOrderId={setLastOrderId}/>
         </div>
     );
 };

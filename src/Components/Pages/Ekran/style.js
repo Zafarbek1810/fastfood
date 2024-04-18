@@ -55,7 +55,7 @@ const Wrapper = styled.div`
       border-radius: 50%;
       width: 120px;
       font-size: 58px;
-      height: 120px;
+      height: 19%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -108,7 +108,7 @@ const Wrapper = styled.div`
       border-radius: 50%;
       font-size: 58px;
       width: 120px;
-      height: 120px;
+      height: 19%;
       display: flex;
       align-items: center;
       justify-content: center;

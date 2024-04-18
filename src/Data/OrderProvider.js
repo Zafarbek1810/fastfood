@@ -5,8 +5,8 @@ class OrderProvider {
     return await client.get(`/orders/list?page=${page}&size=${size}`);
   }
 
-  static async createOrder() {
-    return await client.post(`/orders`);
+  static async createOrder(orderType) {
+    return await client.post(`/orders?orderType=${orderType}`);
   }
 
   static async addProductOrder(body) {

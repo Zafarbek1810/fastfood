@@ -50,7 +50,7 @@ const HeaderKassa = ({ lastOrderId }) => {
             <h3>Taomlar</h3>
           </div>
           <div className="right">
-            <button onClick={resetPrintCheque} title="Print chek">
+            <button onClick={resetPrintCheque} title="Print chek" style={{border:'1px solid #000', borderRadius: '16px', marginLeft:'10px', padding:'10px'}}>
               Qayta chek chiqarish
             </button>
             <button onClick={handleLogout} title="Chiqish">

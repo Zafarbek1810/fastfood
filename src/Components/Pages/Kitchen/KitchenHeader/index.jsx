@@ -4,8 +4,9 @@ import UserContext from "../../../../Context/UserContext";
 import { useRouter } from "next/router";
 import { useConfirm } from "material-ui-confirm";
 import { Wrapper } from "./style";
+import OrderProvider from "../../../../Data/OrderProvider";
 
-const KitchenHeader = ({array}) => {
+const KitchenHeader = ({array, lastOrderId}) => {
   const logoutContext = useContextSelector(
     UserContext,
     (ctx) => ctx.actions.logout
@@ -27,6 +28,17 @@ const KitchenHeader = ({array}) => {
         console.log(err);
       });
   };
+  
+  const resetPrintCheque = () => {
+    OrderProvider.ordersPrint(lastOrderId)
+    .then(res=>{
+      console.log(res);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  };
+
   return (
     <Wrapper>
       <div className="top">
@@ -40,6 +52,9 @@ const KitchenHeader = ({array}) => {
             }
           </div>
           <div className="right">
+          <button onClick={resetPrintCheque} title="Print chek" style={{border:'1px solid #000', borderRadius: '16px', marginLeft:'10px', padding:'10px'}}>
+              Qayta chek chiqarish
+            </button>
             <button onClick={handleLogout} title="Chiqish">
             Chiqish <img src="/images/logout.png" alt="" />
             </button>

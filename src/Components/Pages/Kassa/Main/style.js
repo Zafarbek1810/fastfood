@@ -66,6 +66,10 @@ const Wrapper = styled.div`
           height: 200px;
           object-fit: contain;
         }
+
+        h4{
+          font-size: 18px;
+        }
       }
     }
 
@@ -93,6 +97,18 @@ const Wrapper = styled.div`
         .main{
         background-color: #fff;
 
+        }
+
+        .radios{
+          width: 100%;
+          position: absolute;
+          bottom: 45px;
+          right: 0;
+          left: 0;
+
+          label{
+            width: 50% !important;
+          }
         }
 
         button.order {
@@ -123,6 +139,7 @@ const Wrapper = styled.div`
           border-radius: 5px;
 
           span {
+            font-size: 12px;
             button {
               background: transparent;
               border: none;
