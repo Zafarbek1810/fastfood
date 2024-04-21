@@ -11,6 +11,7 @@ import DeleteSvg from "../../../Common/Svgs/DeleteSvg";
 import { IconButton } from "@mui/material";
 import { useConfirm } from "material-ui-confirm";
 import { toast } from "react-toastify";
+import numberFormat from "../../../../utils/numberFormat";
 
 const AddPrice = () => {
   const confirm = useConfirm();
@@ -176,6 +177,7 @@ const AddPrice = () => {
             open={isModalOpen}
             onCancel={handleCancel}
             onOk={handleOk}
+            style={{background:"#fff"}}
           >
             <form onSubmit={handleOk}>
               <label className="label">
@@ -286,7 +288,7 @@ const AddPrice = () => {
                     {item.name}
                   </td>
                   <td style={{ minWidth: "30%" }} className="col">
-                    {item.price}
+                    {numberFormat(item.price)}
                   </td>
                   <td style={{ minWidth: "20%" }} className="col">
                     <div className="btns">

@@ -8,8 +8,12 @@ import numberFormat from "../../../../utils/numberFormat";
 import OrderProvider from "../../../../Data/OrderProvider";
 import { toast } from "react-toastify";
 import { Modal, Drawer, Button, Radio } from "antd";
+import { useRouter } from "next/router";
+import { useConfirm } from "material-ui-confirm";
+import UserContext from "../../../../Context/UserContext";
+import { useContextSelector } from "use-context-selector";
 
-const Main = ({ setLastOrderId }) => {
+const Main = () => {
   const [category, setCategory] = useState([]);
   const [categoryId, setCategoryId] = useState(0);
   const [products, setProducts] = useState([]);
@@ -22,6 +26,11 @@ const Main = ({ setLastOrderId }) => {
   const [editProductId, setEditProductId] = useState(null);
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [value, setValue] = useState(null);
+  const [lastOrderId, setLastOrderId] = useState(null);
+  const router = useRouter();
+  const confirm = useConfirm();
+
+  console.log(lastOrderId);
 
   const onChange = ({ target: { value } }) => {
     setValue(value);
@@ -58,7 +67,6 @@ const Main = ({ setLastOrderId }) => {
       });
   }, [fetch, categoryId]);
 
-  console.log(productArr);
 
   const handleClick = (item) => {
     const existingProduct = productArr.find(
@@ -145,7 +153,7 @@ const Main = ({ setLastOrderId }) => {
               toast.success("Buyurtma muvaffaqiyatli berildi");
               setProductArr([]);
               setLoadingBtn(false);
-              setValue(null)
+              setValue(null);
             })
             .catch((err) => {
               console.log(err);
@@ -178,6 +186,36 @@ const Main = ({ setLastOrderId }) => {
       value: 25,
     },
   ];
+
+  const logoutContext = useContextSelector(
+    UserContext,
+    (ctx) => ctx.actions.logout
+  );
+
+  const handleLogout = () => {
+    confirm({
+      title: "Haqiqatan ham tizimdan chiqmoqchimisiz?",
+      confirmationText: "Ha",
+      cancellationText: "Yo'q",
+    })
+      .then(() => {
+        logoutContext();
+        router.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const resetPrintCheque = () => {
+    OrderProvider.ordersPrint(lastOrderId)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <Wrapper>
@@ -215,6 +253,23 @@ const Main = ({ setLastOrderId }) => {
             )}
           </div>
           <div className="right">
+            <div className="topOrder">
+              <button
+                onClick={resetPrintCheque}
+                title="Print chek"
+                style={{
+                  border: "1px solid #000",
+                  borderRadius: "16px",
+                  marginLeft: "10px",
+                  padding: "10px",
+                }}
+              >
+                Qayta chek chiqarish
+              </button>
+              <button onClick={handleLogout} title="Chiqish">
+                Chiqish <img src="/images/logout.png" alt="" />
+              </button>
+            </div>
             <div className="orders">
               <div className="main">
                 {productArr ? (
@@ -233,7 +288,7 @@ const Main = ({ setLastOrderId }) => {
               </div>
               <div className="radios">
                 <Radio.Group
-                style={{width:'100%'}}
+                  style={{ width: "100%" }}
                   options={optionsWithDisabled}
                   onChange={onChange}
                   value={value}
@@ -244,9 +299,10 @@ const Main = ({ setLastOrderId }) => {
               <button
                 onClick={() => handleCreateOrder(productArr)}
                 className="order"
-                disabled={loadingBtn}
+                disabled={loadingBtn || productArr.length==0}
               >
-                Buyurtma berish <b>{totalCount > 0 && `  ${totalSum} so'm`}</b>
+                Buyurtma berish{" "}
+                <b>{totalCount > 0 && `  ${numberFormat(totalSum)} so'm`}</b>
               </button>
             </div>
           </div>

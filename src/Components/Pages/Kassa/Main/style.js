@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     display: flex;
     /* justify-content: space-between; */
     align-items: center;
-    height: calc(100vh - 60px);
+    height: 100vh;
 
     .left {
       width: 15%;
@@ -54,7 +54,7 @@ const Wrapper = styled.div`
       padding: 15px;
 
       .product {
-        width: 200px;
+        width: 23%;
         height: 270px;
         border: 1px solid rgba(0, 0, 0, 0.175);
         border-radius: 5px;
@@ -80,8 +80,38 @@ const Wrapper = styled.div`
       justify-content: space-between;
       flex-direction: column;
       position: relative;
-      margin-top: 15px;
-      padding: 0 15px;
+
+      .topOrder{
+        width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #999;
+      padding: 15px 0;
+      h3 {
+        font-size: 20px;
+        margin-right: 20px;
+        margin-bottom: 0;
+      }
+
+      button {
+        background: transparent;
+        border: none;
+        color: #000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+
+        img {
+          width: 20px;
+        }
+      }
+
+      svg {
+        width: 20px;
+      }
+      }
 
       .summ {
         position: absolute;

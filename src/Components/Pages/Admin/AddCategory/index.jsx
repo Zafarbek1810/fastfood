@@ -112,6 +112,7 @@ const AddCategory = () => {
           open={isModalOpen}
           onCancel={handleCancel}
           onOk={handleOk}
+          style={{background:"#fff"}}
         >
           <form onSubmit={handleOk}>
             <label className="label">

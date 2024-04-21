@@ -44,10 +44,8 @@ const HeaderKassa = ({ lastOrderId }) => {
       <div className="top">
         <div className="wrap">
           <div className="left">
-            <h3>Menyu</h3>
           </div>
           <div className="middle">
-            <h3>Taomlar</h3>
           </div>
           <div className="right">
             <button onClick={resetPrintCheque} title="Print chek" style={{border:'1px solid #000', borderRadius: '16px', marginLeft:'10px', padding:'10px'}}>

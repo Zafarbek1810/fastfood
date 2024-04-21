@@ -112,6 +112,11 @@ const LoginWrapper = styled.div`
     align-items: center;
   }
 
+  .aboutProgram{
+    background-color: transparent;
+    border: none;
+    color: #000;
+  }
   
 
   @media (max-width: 650px) {

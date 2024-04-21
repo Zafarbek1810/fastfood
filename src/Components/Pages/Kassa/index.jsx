@@ -4,11 +4,11 @@ import Main from './Main';
 import { KassaWrapper } from './style';
 
 const KassaMain = () => {
-    const [lastOrderId, setLastOrderId] = useState(null)
+    
     return (
         <>
-            <HeaderKassa lastOrderId={lastOrderId}/>
-            <Main setLastOrderId={setLastOrderId}/>
+            {/* <HeaderKassa lastOrderId={lastOrderId}/> */}
+            <Main />
         </>
     );
 };

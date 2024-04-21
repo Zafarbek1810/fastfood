@@ -7,7 +7,8 @@ import { toast } from "react-toastify";
 import UserContext from "../../../Context/UserContext";
 import AuthProvider from "../../../Data/AuthProvider";
 import ButtonLoader from "../../Common/ButtonLoader";
-import { Button, Checkbox, Form, Input, Select } from "antd";
+import { Button, Checkbox, Form, Input, Modal, Select } from "antd";
+import UserProvider from "../../../Data/UserProvider";
 
 const Login = () => {
   const {
@@ -27,6 +28,13 @@ const Login = () => {
   );
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   const onFinish = (values) => {
     console.log("Success:", values.role);
@@ -128,37 +136,11 @@ const Login = () => {
               rules={[
                 {
                   required: true,
-                  message: "Tanlang",
+                  message: "Username kiriting",
                 },
               ]}
             >
-              <Select
-                placeholder="Tanlang"
-                onChange={onGenderChange}
-                allowClear
-                options={[
-                  {
-                    value: "ceo",
-                    label: "CEO",
-                  },
-                  {
-                    value: "admin",
-                    label: "Admin",
-                  },
-                  {
-                    value: "kassa",
-                    label: "Kassa",
-                  },
-                  {
-                    value: "kuxnya",
-                    label: "Kuxnya",
-                  },
-                  {
-                    value: "ekran",
-                    label: "Ekran",
-                  },
-                ]}
-              />
+              <Input />
             </Form.Item>
 
             <Form.Item
@@ -187,8 +169,25 @@ const Login = () => {
               </Button>
             </Form.Item>
           </Form>
+          <button className="aboutProgram" onClick={showModal}>Dastur haqida</button>
+          <Modal
+          // title={"Dasturchilar haqida"}
+          open={isModalOpen}
+          onCancel={handleCancel}
+          style={{background:"#fff"}}
+          footer={
+            <Button type="primary" onClick={handleCancel}>Yopish</Button>
+          }
+        >
+          <p>Ushbu dastur IDGroup tomonidan ishlab chiqilgan</p>
+          <p>Dasturchilar:</p>
+          <p>Bekend: Dilshod Abdullayev</p>
+          <p>Frontend: Zafarbek Yo'ldoshev</p>
+          
+        </Modal>
         </div>
       </div>
+      
     </LoginWrapper>
   );
 };

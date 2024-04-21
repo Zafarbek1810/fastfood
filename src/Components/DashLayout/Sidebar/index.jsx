@@ -32,6 +32,12 @@ const NavListMenu = [
     role: ["ROLE_CEO"],
   },
   {
+    title: "Sozlamalar",
+    path: "/ceo/users",
+    src: <SettingSvg />,
+    role: ["ROLE_CEO"],
+  },
+  {
     title: "Statistika",
     path: "/admin/statistika",
     src: <ChartStatisticSvg />,
@@ -53,12 +59,6 @@ const NavListMenu = [
     title: "Company qo'shish",
     path: "/admin/company",
     src: <CompanySvg />,
-    role: ["ROLE_ADMIN"],
-  },
-  {
-    title: "Sozlamalar",
-    path: "/admin/setting",
-    src: <SettingSvg />,
     role: ["ROLE_ADMIN"],
   },
 ];

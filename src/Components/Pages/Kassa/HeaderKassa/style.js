@@ -40,18 +40,6 @@ const Wrapper = styled.div`
         margin-bottom: 0;
       }
 
-      @keyframes bell {
-        0% {
-          transform: rotate(0deg);
-        }
-        50% {
-          transform: rotate(10deg);
-        }
-        100% {
-          transform: rotate(0deg);
-        }
-      }
-
       button {
         background: transparent;
         border: none;
