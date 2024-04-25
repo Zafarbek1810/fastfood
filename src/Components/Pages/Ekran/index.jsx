@@ -19,6 +19,7 @@ const EkranMain = () => {
   );
   const confirm = useConfirm();
   const router = useRouter();
+  const [gen, setGen] = useState("female");
 
   useEffect(() => {
     const fetchOrders = () => {
@@ -59,17 +60,25 @@ const EkranMain = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       if (ordersReady.filter((item) => item.toModal == 1).length === 1) {
+        const sequenceNumber = ordersReady.filter(
+          (item) => item.toModal === 1
+        )[0]?.sequenceNumber;
         setOpenModal(true);
-        playAudio(
-          ordersReady.filter((item) => item.toModal == 1)[0]?.sequenceNumber,
-          "female"
-        );
+        playAudio(sequenceNumber, gen);
         setTimeout(() => {
-          OrderProvider.updateModalStatus(
-            +ordersReady.filter((item) => item.toModal == 1)[0].sequenceNumber
-          );
+          OrderProvider.updateModalStatus(+sequenceNumber);
           setOpenModal(false);
         }, 3000);
+
+        if(sequenceNumber === 99){
+          if(gen==='male'){
+            setGen('female')
+          } else if(gen==='female'){
+            setGen('male')
+          } else {
+            setGen('female')
+          }
+        }
       }
     };
     fetchOrders();
@@ -105,9 +114,9 @@ const EkranMain = () => {
       });
   }, []);
 
-  const playAudio = (number) => {
+  const playAudio = (number, gender) => {
     setUrlAudio(
-      `http://217.18.63.208:8080/api/tv/file/preview/audio?number=${number}&gender=female`
+      `http://217.18.63.208:8080/api/tv/file/preview/audio?number=${number}&gender=${gender}`
     );
   };
 
