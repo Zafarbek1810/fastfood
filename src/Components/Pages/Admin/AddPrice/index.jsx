@@ -78,7 +78,7 @@ const AddPrice = () => {
           name: rest.name,
           price: rest.price,
           isAvailable: true,
-          toKitchen: !toKitchen,
+          toKitchen: toKitchen,
           description: "",
         });
         console.log(res);
@@ -101,7 +101,7 @@ const AddPrice = () => {
           name: rest.name,
           price: +rest.price,
           isAvailable: true,
-          toKitchen: !toKitchen,
+          toKitchen: toKitchen,
           description: "",
         });
         console.log(res);
